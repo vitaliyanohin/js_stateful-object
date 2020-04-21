@@ -50,16 +50,20 @@ function transformState(state, transforms) {
   for (const key of transforms) {
     const func = key.operation;
 
-    if (func === 'addProperties') {
-      addProperties(state, key);
-    }
+    switch (func) {
+      case 'addProperties':
+        addProperties(state, key);
+        break;
 
-    if (func === 'clear') {
-      clear(state);
-    }
+      case 'clear':
+        clear(state);
+        break;
 
-    if (func === 'removeProperties') {
-      removeProperties(state, key);
+      case 'removeProperties':
+        removeProperties(state, key);
+        break;
+
+      default: continue;
     }
   }
 
